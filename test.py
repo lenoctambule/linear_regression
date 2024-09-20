@@ -1,11 +1,11 @@
-from linear_regression import LinearRegression
+from model import LinearRegression
 import random as rand
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 
-m = LinearRegression(lr = 0.000001)
-training = [list(), list()]
-test     = [list(), list()]
+m = LinearRegression()
+training = {'x' : list(), 'y' : list()}
 with open('data.csv', 'r') as f :
     lines = f.readlines()
     l     = len(lines) - 1
@@ -14,17 +14,16 @@ with open('data.csv', 'r') as f :
     for i in range(1, l) :
         s = lines[i].split(',')
         if True: 
-            training[0].append(float(s[0]))
-            training[1].append(float(s[1]))
-        if True :
-            test[0].append(float(s[0]))
-            test[1].append(float(s[1]))
-m.train_batch(training[0], training[1])
-error = 0
-for i in range(len(test[0])):
-    res = m.inferY(test[0][i])
-    error += (res - test[1][i]) ** 2
-plt.scatter(test[0], test[1])
-#plt.show()
-rmse = math.sqrt(error) / len(test[0])
-print(f'{rmse=}')
+            training['x'].append(float(s[0]))
+            training['y'].append(float(s[1]))
+m.train(training['x'], training['y'])
+print('RMSE =', m.loss(training['x'], training['y']))
+xmin = min(training['x'])
+xmax = max(training['x'])
+ymin = m.infer(0)
+ymax = m.infer(1)
+print(xmin, ymin)
+print(xmax, ymax)
+plt.plot([0, 1], [ymin, ymax])
+plt.scatter(m.n_x, m.n_y)
+plt.show()
