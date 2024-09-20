@@ -1,5 +1,4 @@
 from model import LinearRegression
-import random as rand
 import matplotlib.pyplot as plt
 import csv
 
