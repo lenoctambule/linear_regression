@@ -59,7 +59,7 @@ class   LinearRegression :
             post_loss   = self.loss(self.n_x, self.n_y)
             self.l_loss.append(post_loss)
             self.epoch += 1
-            if pre_loss <= post_loss:
+            if pre_loss <= post_loss or abs(pre_loss - post_loss) < 0.00001:
                 self.denorm_params()
                 print(f"Normalized parameters : a={self.n_a} b={self.n_b}")
                 print(f"Denormalize parameters : a={self.a} b={self.b}")
