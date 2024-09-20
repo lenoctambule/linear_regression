@@ -2,7 +2,6 @@ from model import LinearRegression
 import random as rand
 import matplotlib.pyplot as plt
 
-
 if __name__ == "__main__" :
     model = LinearRegression()
     training = {'x' : list(), 'y' : list()}

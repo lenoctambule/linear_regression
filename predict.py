@@ -1,11 +1,6 @@
 import json
 
 if __name__ == "__main__" :
-    try:
-        mileage = float(input('Input mileage :'))
-    except ValueError:
-        print('Usage : py predict.py <mileage:float>')
-        exit(1)
     a = 0
     b = 0
     try :
@@ -15,4 +10,12 @@ if __name__ == "__main__" :
             b = d['b']
     except :
         pass
+
+    while 1 :
+        try:
+            mileage = float(input('Input mileage :'))
+            break
+        except ValueError:
+            print('ERROR : Input a valid float.')
+            exit(1)
     print(f'Result : {a * mileage + b}')

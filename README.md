@@ -1,8 +1,18 @@
 # Linear regression
 
+## Usage
+
+```console
+$ py -m install requirements.txt
+$ py training.py
+$ py predict.py
+Input mileage :230000      
+Result : 3931.7570368074385
+```
+
 ## Gradient descent with proof
 
-We have a linear equation $y = ax + b$ that we need to ajust to a set of training data $T$ so it minimises a loss function $\mathcal{L}$. For this, we'll choose $\mathcal L (y, \hat y) = {1 \over |T|} \sum_{y \in T}(y - \hat y)^2 $ where $\hat y$ is the expected output. Since the loss function is convex (ie. $\mathcal{L}''(x) = 0 \geq 0$), we can apply the conventional gradient descent algorithm without worrying about local minimas. But before, we'll have to figure out $\mathcal L (y, \hat y) \over da$ and $\mathcal  L (y, \hat y) \over db$ in order to figure out for each step of the training which way we need to move our parameters.
+We have a linear equation $y = ax + b$ that we need to ajust to a set of training data $T$ so it minimises a loss function $\mathcal{L}$. For this, we'll choose $\mathcal L (y, \hat y) = {1 \over |T|} \sum_{y \in T}(y - \hat y)^2 $ where $\hat y$ is the expected output. Since the loss function is convex (ie. $\mathcal{L}''(x) \geq 0$), we can apply the conventional gradient descent algorithm without worrying about local minimas. But before, we'll have to figure out $\mathcal L (y, \hat y) \over da$ and $\mathcal  L (y, \hat y) \over db$ in order to figure out for each step of the training which way we need to move our parameters.
 
 We have,
 $$
