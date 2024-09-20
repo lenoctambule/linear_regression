@@ -1,3 +1,5 @@
+import json
+
 class   LinearRegression :
     n_a = float(0)
     n_b = float(0)
@@ -62,3 +64,7 @@ class   LinearRegression :
                 print(f"Normalized parameters : a={self.n_a} b={self.n_b}")
                 print(f"Denormalize parameters : a={self.a} b={self.b}")
                 break
+
+    def export_params(self):
+        with open('params.json', 'w') as f :
+            json.dump({'a' : self.a, 'b' : self.b}, f)
