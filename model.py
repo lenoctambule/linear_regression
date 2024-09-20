@@ -5,7 +5,8 @@ class   LinearRegression :
     b   = float(0)
     t = 0
     learning_rate = float(0)
-    L = list()
+    l_loss    = []
+    epoch   = 0
 
     def __init__(self, lr : float = 0.1) -> None:
         self.learning_rate = lr
@@ -49,10 +50,13 @@ class   LinearRegression :
         self.ymax = max(y)
         self.n_x = self.norm(x, self.xmin, self.xmax)
         self.n_y = self.norm(y, self.ymin, self.ymax)
+        self.l_loss.append(self.loss(self.n_x, self.n_y))
         while True :
-            pre_loss    = self.loss(self.n_x, self.n_y)
+            pre_loss    = self.l_loss[self.epoch]
             self.step(self.n_x, self.n_y)
             post_loss   = self.loss(self.n_x, self.n_y)
+            self.l_loss.append(post_loss)
+            self.epoch += 1
             if pre_loss <= post_loss:
                 self.denorm_params()
                 print(f"Normalized parameters : a={self.n_a} b={self.n_b}")
