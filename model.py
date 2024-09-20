@@ -23,7 +23,7 @@ class   LinearRegression :
         return sum([(self.normalized_infer(x[i]) - y[i]) ** 2 for i in range(len(x))]) / len(x)
 
     def rmse(self,  x: list, y : list):
-        return sum([(self.infer(x[i]) - y[i]) ** 2 for i in range(len(x))]) ** -2 / len(x)
+        return (sum([(self.infer(x[i]) - y[i]) ** 2 for i in range(len(x))]) ** -2) / len(x)
 
     def step(self, x: list, y : list):
         m = len(x)
@@ -62,7 +62,7 @@ class   LinearRegression :
             if pre_loss <= post_loss or abs(pre_loss - post_loss) < 0.00001:
                 self.denorm_params()
                 print(f"Normalized parameters : a={self.n_a} b={self.n_b}")
-                print(f"Denormalize parameters : a={self.a} b={self.b}")
+                print(f"Parameters : a={self.a} b={self.b}")
                 break
 
     def export_params(self):

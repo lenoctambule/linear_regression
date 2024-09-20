@@ -5,11 +5,15 @@ import csv
 if __name__ == "__main__" :
     model = LinearRegression()
     training = {'x' : list(), 'y' : list()}
-    with open('data.csv', 'r') as f :
-        reader = csv.DictReader(f, delimiter=',')
-        for l in reader:
-                training['x'].append(float(l['km']))
-                training['y'].append(float(l['price']))
+    try :
+        with open('data.csv', 'r') as f :
+            reader = csv.DictReader(f, delimiter=',')
+            for l in reader:
+                    training['x'].append(float(l['km']))
+                    training['y'].append(float(l['price']))
+    except :
+        print('Failed to read data.csv file.')
+        exit(1)
     model.train(training['x'], training['y'])
     model.export_params()
     print('RMSE =', model.rmse(training['x'], training['y']))

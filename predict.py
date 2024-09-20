@@ -11,6 +11,7 @@ if __name__ == "__main__" :
     except :
         pass
 
+    print(f'Parameters :\n{a=}\n{b=}')
     while 1 :
         try:
             mileage = float(input('Input mileage :'))
